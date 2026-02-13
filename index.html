@@ -114,35 +114,20 @@
       </p>
 
       <button onclick="loveMessage()">
-        Click me, Love 💌
-      </button>
-    </div>
-  </div>
+  Click me, Love 💌
+</button>
 
-  <script>
-    function loveMessage() {
-      alert("Love 💖🐰\\nYou are my favorite person in this world.\\nHappy Valentine’s Day, my love 🌸🎀");
-    }
+<script>
+  function loveMessage() {
+    alert(
+      "Love 💖🐰\n\n" +
+      "You are my favorite person in this world.\n" +
+      "Happy Valentine’s Day, my love 🌸🎀\n\n" +
+      "I love you always ❤️"
+    );
+  }
+</script>
 
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-
-      const emojis = ["💖", "💕", "💜", "🌸", "🎀"];
-      heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
-    }
-
-    setInterval(createHeart, 400);
-  </script>
 
 </body>
 </html>
