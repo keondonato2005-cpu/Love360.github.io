@@ -51,7 +51,7 @@ p {
   line-height: 1.8;
 }
 
-/* Buttons */
+/* Button */
 .main-btn {
   margin-top: 20px;
   padding: 15px 35px;
@@ -68,17 +68,6 @@ p {
 
 .main-btn:hover {
   transform: scale(1.08);
-}
-
-.music-btn {
-  margin-top: 15px;
-  padding: 10px 25px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  background: #ff9de2;
-  color: #5a2a7a;
 }
 
 /* Floating Hearts */
@@ -112,6 +101,153 @@ p {
 /* Popup */
 .popup {
   display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.65);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  text-align: center;
+  max-width: 360px;
+  border: 3px solid #ff9de2;
+  box-shadow: 0 0 25px rgba(255,0,150,0.5);
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Kuromi Sticker */
+.kuromi-sticker {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+/* Couple Photo */
+.couple-photo {
+  width: 220px;
+  border-radius: 20px;
+  margin: 15px 0;
+  border: 3px solid #ff9de2;
+  box-shadow: 0 0 15px rgba(255,0,150,0.4);
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(to right, #ff4fbf, #7b2cff);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+  <div class="card">
+    <h1>Happy Valentine’s Day 💖</h1>
+    <h2>Love 💜</h2>
+
+    <p>
+      My dearest <b>Love</b>,<br><br>
+      I may not have a gift wrapped in a box,<br>
+      but I have something even more precious:<br>
+      <b>my heart, my love, and my promise to always choose you.</b><br><br>
+
+      Thank you for being my safe place,<br>
+      the sweetest part of my days,<br>
+      and the person I want to love endlessly.<br><br>
+
+      💖 You are loved deeply.<br>
+      💜 You are appreciated always.<br>
+      🌸 You mean the world to me.<br><br>
+
+      Happy Valentine’s Day, my love.<br>
+      Forever yours ❤️
+    </p>
+
+    <button class="main-btn" onclick="openPopup()">
+      Click me, Love 💌
+    </button>
+  </div>
+</div>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+
+    <!-- Fixed Kuromi Sticker -->
+    <img src="6207a56426ab99000460a362.png" class="kuromi-sticker">
+
+    <!-- Couple Photo -->
+    <img src="wmremove-transformed.jpegwmremove-transformed.jpeg" class="couple-photo">
+
+    <h2>Love 💖🐰</h2>
+
+    <p>
+      You are my favorite person in this world 💜<br><br>
+      Happy Valentine’s Day, my love 🌸🎀<br><br>
+      I love you always ❤️
+    </p>
+
+    <button class="close-btn" onclick="closePopup()">
+      Close 💌
+    </button>
+  </div>
+</div>
+
+<script>
+function openPopup() {
+  document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+/* Hearts */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  const emojis = ["💖","💕","💜","🌸","🎀"];
+  heart.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.animationDuration = (3+Math.random()*3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,500);
+
+/* Sparkles */
+function createSparkle() {
+  const sparkle = document.createElement("div");
+  sparkle.classList.add("sparkle");
+  sparkle.innerHTML = "✨";
+  sparkle.style.left = Math.random()*100 + "vw";
+  sparkle.style.animationDuration = (2+Math.random()*3) + "s";
+  document.body.appendChild(sparkle);
+  setTimeout(()=>sparkle.remove(),5000);
+}
+setInterval(createSparkle,700);
+</script>
+
+</body>
+</html>
   position: fixed;
   z-index: 999;
   left: 0;
