@@ -15,6 +15,7 @@ body {
   overflow-x: hidden;
 }
 
+/* Overlay */
 .overlay {
   background: rgba(0,0,0,0.55);
   min-height: 100vh;
@@ -24,6 +25,7 @@ body {
   padding: 30px;
 }
 
+/* Main Card */
 .card {
   background: rgba(255,255,255,0.88);
   color: #5a2a7a;
@@ -49,6 +51,7 @@ p {
   line-height: 1.8;
 }
 
+/* Buttons */
 .main-btn {
   margin-top: 20px;
   padding: 15px 35px;
@@ -67,7 +70,18 @@ p {
   transform: scale(1.08);
 }
 
-/* Floating hearts */
+.music-btn {
+  margin-top: 15px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #ff9de2;
+  color: #5a2a7a;
+}
+
+/* Floating Hearts */
 .heart {
   position: absolute;
   font-size: 24px;
@@ -81,7 +95,21 @@ p {
   100% { transform: translateY(-10vh); opacity: 0; }
 }
 
-/* Custom Popup */
+/* Sparkles */
+.sparkle {
+  position: absolute;
+  font-size: 18px;
+  animation: sparkleFloat 5s infinite;
+  opacity: 0.9;
+}
+
+@keyframes sparkleFloat {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* Popup */
 .popup {
   display: none;
   position: fixed;
@@ -100,10 +128,30 @@ p {
   padding: 30px;
   border-radius: 25px;
   text-align: center;
-  max-width: 350px;
+  max-width: 360px;
   border: 3px solid #ff9de2;
   box-shadow: 0 0 25px rgba(255,0,150,0.5);
   animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Kuromi Sticker */
+.kuromi-sticker {
+  width: 110px;
+  margin-bottom: 10px;
+}
+
+/* Couple Photo */
+.couple-photo {
+  width: 220px;
+  border-radius: 20px;
+  margin: 15px 0;
+  border: 3px solid #ff9de2;
+  box-shadow: 0 0 15px rgba(255,0,150,0.4);
 }
 
 .popup-content h2 {
@@ -127,15 +175,11 @@ p {
   font-weight: bold;
   cursor: pointer;
 }
-
-@keyframes pop {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
 </style>
 </head>
 
 <body>
+
 <div class="overlay">
   <div class="card">
     <h1>Happy Valentine’s Day 💖</h1>
@@ -162,19 +206,41 @@ p {
     <button class="main-btn" onclick="openPopup()">
       Click me, Love 💌
     </button>
+
+    <br>
+
+    <button class="music-btn" onclick="playMusic()">
+      🎵 Play Valentine Music
+    </button>
   </div>
 </div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <!-- Popup -->
 <div id="popup" class="popup">
   <div class="popup-content">
+
+    <!-- Kuromi Sticker -->
+    <img src="https://i.imgur.com/1Q9Z1Zm.png" class="kuromi-sticker">
+
+    <!-- Couple Photo -->
+    <img src="couple.jpg" class="couple-photo">
+
     <h2>Love 💖🐰</h2>
+
     <p>
       You are my favorite person in this world 💜<br><br>
       Happy Valentine’s Day, my love 🌸🎀<br><br>
       I love you always ❤️
     </p>
-    <button class="close-btn" onclick="closePopup()">Close 💌</button>
+
+    <button class="close-btn" onclick="closePopup()">
+      Close 💌
+    </button>
   </div>
 </div>
 
@@ -187,41 +253,36 @@ function closePopup() {
   document.getElementById("popup").style.display = "none";
 }
 
+/* Hearts */
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
-
   const emojis = ["💖","💕","💜","🌸","🎀"];
   heart.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
-
   heart.style.left = Math.random()*100 + "vw";
   heart.style.animationDuration = (3+Math.random()*3) + "s";
-
   document.body.appendChild(heart);
-
   setTimeout(()=>heart.remove(),6000);
 }
-setInterval(createHeart,400);
+setInterval(createHeart,500);
+
+/* Sparkles */
+function createSparkle() {
+  const sparkle = document.createElement("div");
+  sparkle.classList.add("sparkle");
+  sparkle.innerHTML = "✨";
+  sparkle.style.left = Math.random()*100 + "vw";
+  sparkle.style.animationDuration = (2+Math.random()*3) + "s";
+  document.body.appendChild(sparkle);
+  setTimeout(()=>sparkle.remove(),5000);
+}
+setInterval(createSparkle,700);
+
+/* Music */
+function playMusic() {
+  document.getElementById("bgMusic").play();
+}
 </script>
-
-</body>
-</html>
-
-      <button onclick="loveMessage()">
-  Click me, Love 💌
-</button>
-
-<script>
-  function loveMessage() {
-    alert(
-      "Love 💖🐰\n\n" +
-      "You are my favorite person in this world.\n" +
-      "Happy Valentine’s Day, my love 🌸🎀\n\n" +
-      "I love you always ❤️"
-    );
-  }
-</script>
-
 
 </body>
 </html>
